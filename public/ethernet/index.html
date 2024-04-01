@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Připojení Raspberry Pi do sítě pomocí Ethernetu, síťového kabelu.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>Ethernet - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>Ethernet</h2>
+<p class="article-meta">
+	<strong>09.03.2014</strong>
+</p>
+<p>
+	Pokud Raspberry Pi připojíme k&nbsp;nějakému zařízení jako je modem nebo switch, které
+	disponuje DHCP, tak se veškeré nastavení provede automaticky. Ale někdy se může stát,
+	že budeme potřebovat IP adresu nastavit ručně. Například když budeme Raspberry Pi
+	připojovat přímo k&nbsp;jinému počítači. Následující postup popisuje jak propojit počítač
+	s&nbsp;Windows&nbsp;7 a&nbsp;Raspberry Pi. Obě zařízení musíme mít samozřejmě propojené síťovým kabelem.
+</p>
+<h3>Nastavení Raspberry Pi</h3>
+<ol>
+	<li>
+		<p>Otevřeme si soubor interfaces.</p>
+		<pre><code>$ sudo nano /etc/network/interfaces</code></pre>
+	</li>
+	<li>
+		<p>
+			V souboru najdeme řádku iface eth0 inet dhcp a&nbsp;změníme dhcp za <b>static</b>.
+			Na další dvě řádky dopíšeme IP&nbsp;adresu 192.168.0.1 a&nbsp;masku sítě 255.255.255.0.
+			Obě řádky musí začínat odsazením tabulátoru.
+		</p>
+		<pre>
+<code>iface eth0 inet dhcp
+	address 192.168.0.1
+	netmask 255.255.255.0</code>
+		</pre>
+		<p>
+			<a href="/images/ethernet/interfaces.png">
+				<img src="/images/ethernet/interfaces.png" title="interfaces" alt="interfaces" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>Restartujeme Raspberry Pi.</p>
+		<pre><code>$ sudo reboot</code></pre>
+	</li>
+	<li>
+		<p>
+			Nakonec si můžeme zkontrolovat nastavení. Měli by jsme vidět IP adresu, kterou jsme zadali.
+		</p>
+		<pre><code>$ ifconfig</code></pre>
+		<p>
+			<a href="/images/ethernet/ifconfig.png">
+				<img src="/images/ethernet/ifconfig.png" title="ifconfig" alt="ifconfig" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+	</li>
+</ol>
+<h3>Nastavení počítače s&nbsp;Windows 7</h3>
+<ol>
+	<li>
+		<p>
+			Dostaneme se do nastavení sítí. Cesta je buď <b>Ovládací panely\Síť a&nbsp;Internet\Centrum síťových připojení a&nbsp;sdílení</b>
+			nebo <b>Ovládací panely\Všechny položky Ovládacích panelů\Centrum síťových připojení a&nbsp;sdílení</b>
+		</p>
+	</li>
+	<li>
+		<p>Vybereme naše připojení k&nbsp;místní síti.</p>
+		<p>
+			<a href="/images/ethernet/centrum-sitovych-pripojeni-a-sdileni.png">
+				<img src="/images/ethernet/centrum-sitovych-pripojeni-a-sdileni.png" title="centrum síťových připojení a&nbsp;sdílení" alt="centrum síťových připojení a&nbsp;sdílení" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>V dalším okně vybereme Vlastnosti.</p>
+		<p>
+			<a href="/images/ethernet/pripojeni-k-minstni-siti.png">
+				<img src="/images/ethernet/pripojeni-k-minstni-siti.png" title="připojení k&nbsp;místní síti" alt="připojení k&nbsp;místní síti" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>Vybereme protokol IP verze 4 a&nbsp;klepneme na Vlastnosti.</p>
+		<p>
+			<a href="/images/ethernet/tcp-ipv4.png">
+				<img src="/images/ethernet/tcp-ipv4.png" title="protokol IP verze 4" alt="protokol IP verze 4" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>Zadáme IP adresu 192.168.0.2 a&nbsp;masku 255.255.255.0. Všechno potvrdíme a&nbsp;je to.</p>
+		<p>
+			<a href="/images/ethernet/ip-adresa-a-maska.png">
+				<img src="/images/ethernet/ip-adresa-a-maska.png" title="IP adresa a&nbsp;maska" alt="IP adresa a&nbsp;maska" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+</ol>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>

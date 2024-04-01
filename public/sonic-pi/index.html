@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sonic Pi je program pro výuku programování tvorbou hudby.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>Sonic Pi - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>Sonic Pi</h2>
+<p class="article-meta">
+	<strong>27.04.2014</strong>
+</p>
+<p>
+	Program ve kterém se můžete učit programovat tím, že vytváříte hudbu.
+	V Raspbianu je už předinstalovaný, ale nemá ikonu na ploše. Najít ho můžete
+	v&nbsp;nabídce pod záložkou vzdělávání.
+</p>
+<p>
+	<a href="/images/sonic-pi/sonic-pi-ikona.png">
+		<img src="/images/sonic-pi/sonic-pi-ikona.png" title="Sonic Pi ikona" alt="Sonic Pi ikona" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Celý program se skládá ze tří tlačítek (Přehrát, Zastavit, Uložit) a&nbsp;tří oken
+	(Okno pro psaní kódu, Výpis průběhu přehrávání, Výpis chyb). Z toho plyne opravdu
+	jednoduché ovládání. Napíšete požadovaný kód a&nbsp;spustíte přehrávání.
+	Pro zápis not se používá <a href="https://cs.wikipedia.org/wiki/Musical_Instrument_Digital_Interface">MIDI</a>
+	a&nbsp;k dispozici je 5 druhů zvuků.
+<pre><code>dull_bell, pretty_bell, fm, beep, saw_beep</code></pre>
+</p>
+<p>
+	<a href="/images/sonic-pi/sonic-pi.png">
+		<img src="/images/sonic-pi/sonic-pi.png" title="Sonic Pi" alt="Sonic Pi" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Na <a href="https://www.cl.cam.ac.uk/projects/raspberrypi/sonicpi/">stránkách projektu</a>
+	je k&nbsp;dispozici dokumentace a&nbsp;výukové materiály. Mezi nimi lze najít i&nbsp;následující
+	Demo Program. Původní anglické komentáře jsem se pokusil přeložit do češtiny.
+</p>
+<pre><code># Sonic Pi Demo Program
+# Pro spuštění stiskněte Play a&nbsp;pro zastavení Stop
+
+# Nastavení tempa
+with_tempo 350
+
+# Následující sekvence se přehraje dvakrát se základním druhem zvuku
+2.times do
+	play_pattern [40,25,45,25,25,50,50]
+	play_pattern [25,50,25,30,35,40,45,50]
+	play_pattern [25,50,25,30,35,40,45,50].reverse
+end
+
+# Následující sekvence se přehraje dvakrát a&nbsp;použije se zvuk saw_beep
+2.times do
+	with_synth "saw_beep"
+	play_pattern [25,50,25,30,35,40,45,50].shuffle
+	play_pattern [25,50,25,30,35,40,45,50].reverse
+end
+
+# Ukázka hraní několika zvuků v&nbsp;jednu chvíli.
+# Jednotlivá vlákna hrají současně.
+
+# Trvale běžící zvuk na pozadí, který se mění
+# podle toho jak hýbete myší. Běží dokud nestisknete
+# tlačítko Stop.
+play_pad "saws", 3
+
+# Nové vlákno, které bude hrát zvuk saw_beep.
+# Desetkrát náhodně přehraje notu 37 nebo 49
+# s&nbsp;dvouvteřinovou pauzou.
+in_thread do
+	with_synth "saw_beep"
+	10.times do
+		if rand < 0.5
+			play 37
+		else
+			play 49
+		end
+		sleep 2
+	end
+end
+
+# Nové vlákno, které bude hrát zvuk pretty_bell.
+# Dvacetkrát přehraje notu 49 s&nbsp;jednovteřinovou pauzou.
+in_thread do
+	with_synth "pretty_bell"
+	20.times do
+		play 49
+		sleep 1
+	end
+end
+
+# Výsledkem bude, že každou vteřinu zahraje nota 49
+# z&nbsp;druhého vlákna a&nbsp;každou druhou vteřinu se k&nbsp;tomu
+# přidá nota 49 nebo 37 z&nbsp;prvního vlákna.</code></pre>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>

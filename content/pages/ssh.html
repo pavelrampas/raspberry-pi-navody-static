@@ -1,0 +1,60 @@
+{% extends "templates/layout.html" %}
+{% block title %}SSH{% endblock title %}
+{% block title_separator %} - {% endblock title_separator %}
+{% block description %}Nastavení SSH připojení k Raspberry Pi z jiného počítače pomocí programu PuTTY.{% endblock description %}
+{% block content %}
+<h2>SSH</h2>
+<p class="article-meta">
+	<strong>09.03.2014</strong>
+</p>
+<p>
+	SSH slouží ke vzdálenému přístupu z&nbsp;jiného počítače. K tomu potřebujeme mít
+	Raspberry Pi připojené do sítě nebo přímo k&nbsp;jinému počítači.
+	Postupovat můžeme podle kapitoly <a href="/wi-fi/">Wi-Fi</a> nebo <a href="/ethernet/">Ethernet</a>.
+</p>
+<h3>Nastavení Raspberry Pi</h3>
+<ol>
+	<li>
+		<p>
+			Povolíme SSH v&nbsp;konfiguraci, pokud už jsme tak už někdy dřív neučinili.
+			SSH najdeme v&nbsp;<b>Advanced Options</b>.
+		</p>
+		<pre><code>$ sudo raspi-config</code></pre>
+	</li>
+	<li>
+		<p>
+			Pak už si jenom zjistíme ip adresu.
+		</p>
+		<pre><code>$ ifconfig</code></pre>
+	</li>
+</ol>
+<h3>Vzdálený přístup pomocí PuTTY</h3>
+<ol>
+	<li>
+		<p>
+			Na počítači přes který budeme Raspberry Pi ovládat si stáhneme program
+			<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a>.
+			Program se nemusí instalovat. Můžeme ho rovnou spustit.
+			Do kolonky <b>Host Name</b> zadáme IP adresu Raspberry Pi a&nbsp;klikneme dole na Open.
+		</p>
+		<p>
+			<a href="/images/ssh/putty.png">
+				<img src="/images/ssh/putty.png" title="PuTTY" alt="PuTTY" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Potvrdíme hlášku, která nám vyskočí a&nbsp;můžeme se přihlásit naším
+			přihlašovacím jménem a&nbsp;heslem k&nbsp;Raspberry&nbsp;Pi. Výchozí jméno v&nbsp;Raspbianu je "pi" a&nbsp;heslo "raspberry".
+		</p>
+		<p>
+			<a href="/images/ssh/putty-login.png">
+				<img src="/images/ssh/putty-login.png" title="PuTTY přihlášení" alt="PuTTY přihlášení" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+</ol>
+{% endblock content %}

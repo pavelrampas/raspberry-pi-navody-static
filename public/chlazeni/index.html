@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chlazení Raspberry Pi pasivním chladičem. Vliv krabičky na chlazení.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>Chlazení - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>Chlazení</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong>
+</p>
+<p>
+	I když chladit Raspberry Pi není potřeba, spousta lidí rádo používá různé pasivní
+	chladiče buď koupené nebo domácí výroby. V obchodech se dají sehnat chladiče přímo
+	určené pro Raspberry Pi svými rozměry a&nbsp;počtem. Já jsem volil sadu 8 chladičů
+	<a href="https://www.czc.cz/primecooler-pc-rhs2/32331/produkt">Primecooler PC-RHS2</a>
+	určenou pro grafické karty. Tyto chladiče jsem pak použil v&nbsp;následujících testech.
+	K zjištění teploty jsem použil příkaz <code>$ vcgencmd measure_temp</code>.
+</p>
+<p>
+	První test proběhl hned den kdy jsem chladiče montoval napřed jsem provedl měření
+	během různých činností bez chladičů a&nbsp;poté s&nbsp;přilepenými chladiči. Raspberry Pi přitom
+	bylo v&nbsp;krabičce vyrobené ze stavebnice Cheva.
+</p>
+<br>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Teploty bez chladiče:</th>
+			<th>Teploty s&nbsp;chladičem:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>v nečinnosti</td>
+			<td>45&nbsp;°C</td>
+			<td>42&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>přehrávání filmu 1080p</td>
+			<td>50&nbsp;°C</td>
+			<td>48&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>hraní <a href="https://stolk.org/tlctc/">The Little Crane That Could</a></td>
+			<td>57&nbsp;°C</td>
+			<td>55&nbsp;°C</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<p>
+	Druhý test jsem prováděl o&nbsp;pár měsíců později, když jsem přemýšlel jak velký
+	vliv na teplotu má samotná krabička. Provedl jsem ty samé testy tentokrát v&nbsp;tenké
+	plastové krabičce a&nbsp;bez ní. Krabička měla pouze výřezy na konektory a&nbsp;jeden malý otvor ve víku.
+</p>
+<br>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Teploty s&nbsp;krabičkou:</th>
+			<th>Teploty bez krabičky:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>v nečinnosti</td>
+			<td>48&nbsp;°C</td>
+			<td>41&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>přehrávání filmu 1080p</td>
+			<td>50&nbsp;°C</td>
+			<td>44&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>hraní <a href="https://stolk.org/tlctc/">The Little Crane That Could</a></td>
+			<td>56&nbsp;°C</td>
+			<td>50&nbsp;°C</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<p>
+	Z testů vyplynulo, že pasivní chladiče ovlivňují výslednou teplotu jenom minimálně.
+	Způsobují ale pomalejší stoupání teplot a&nbsp;rychlejší ochlazovaní při změnách zátěže.
+	Výsledné teploty mnohem víc ovlivňuje krabička a&nbsp;to podle toho jak moc
+	umožňuje proudění vzduchu.
+</p>
+<p>
+	<a href="/images/chlazeni/raspberry-pi-chlazeni.jpg">
+		<img src="/images/chlazeni/raspberry-pi-chlazeni.jpg" title="chlazení Raspberry Pi" alt="chlazení Raspberry Pi" class="img-responsive img-rounded">
+	</a>
+</p>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>

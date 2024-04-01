@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Program OMXPlayer pro přehrávání videa na Raspberry Pi.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>OMXPlayer - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>OMXPlayer</h2>
+<p class="article-meta">
+	<strong>23.03.2014</strong>
+</p>
+<p>
+	Jedná se o&nbsp;multimediální přehrávač předinstalovaný v&nbsp;Raspbianu. Na rozdíl od
+	jiných zvládá plynule přehrávat video. Nemá ale moc funkcí, takže na hudbu se
+	hodí spíše <a href="http://www.mplayerhq.hu/">MPlayer</a>.
+	Výhodou je i&nbsp;to že přehrávání videa se spustí i&nbsp;v textovém režimu.
+	Klávesy pro ovládání se dají najít na oficiální stránce <a href="https://github.com/huceke/omxplayer">Omxplayeru</a>.
+	Parametry a&nbsp;nastavení se pak dají zjistit příkazem <code>$ omxplayer -help</code>.
+</p>
+<h3>Základní ovládání</h3>
+<p>
+	Základem je přehrání jednoho video souboru. Důležitý je přepínač <code>-b</code>,
+	kterým se zapne černé pozadí okolo videa.
+</p>
+<pre><code>$ omxplayer -b video.avi</code></pre>
+<p>
+	Pokud má film titulky. Můžeme si nastavit jejich velikost a&nbsp;pozici.
+	Titulky je vhodné ukládat pod stejným názvem jako film aby se sami načetly.
+	Pokud se vám špatně zobrazují české znaky. Je potřeba změnit kódování souboru na UTF-8.
+	Stačí soubor otevřít v&nbsp;nějakém textovém editoru například Leafpad a&nbsp;při ukládání nastavit
+	požadované kódování.
+</p>
+<pre><code>$ omxplayer --font-size 50 --align center video.avi</code></pre>
+<h3>Přehrání celé složky videí</h3>
+<p>
+	Pokud chceme přehrát všechny videa z&nbsp;jedné složky. Musíme si připravit krátký
+	script, který to provede.
+</p>
+<ol>
+
+	<li>
+		<p>
+			Napřed si vytvoříme nový soubor s&nbsp;libovolným názvem.
+		</p>
+		<pre><code>$ nano ~/prehraj-videa.sh</code></pre>
+	</li>
+	<li>
+		<p>
+			Do souboru napíšeme následujících text. Soubor uložíme Ctrl+O
+			a&nbsp;zavřeme Ctrl+X.
+		</p>
+		<pre><code>#!/bin/sh
+FILEPATH="$@"
+for file in $FILEPATH/*; do
+	omxplayer -b --font-size 50 --align center "$file" > /dev/null
+done
+</code></pre>
+	</li>
+	<li>
+		<p>
+			Souboru pak nastavíme práva.
+		</p>
+		<pre><code>$ sudo chmod 755 ~/prehraj-videa.sh</code></pre>
+	</li>
+	<li>
+		<p>
+			A můžeme si přehrát celou složku videí.
+		</p>
+		<pre><code>$ ~/prehraj-videa.sh složka/</code></pre>
+	</li>
+</ol>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Připojení flash disku nebo externího pevného disku v Raspbianu k jednodeskovému počítači Raspberry Pi.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>Připojení disku - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>Připojení disku</h2>
+<p class="article-meta">
+	<strong>02.03.2014</strong> | Aktualizace: 19.10.2014 | Systém: Raspbian 2014-09-09
+</p>
+<p>
+	Ať už se jedná o&nbsp;flash disk nebo externí pevný disk s&nbsp;USB. Všechny tyto zařízení se
+	k&nbsp;Raspberry Pi připojují stejně.
+</p>
+<h3>Grafické rozhraní</h3>
+<p>
+	V grafickém rozhraní stačí připojit disk do USB a&nbsp;vyskočí klasická hláška
+	o&nbsp;vložení odpojitelného média, které si můžeme rovnou otevřít ve správci souborů.
+	<br><br>
+	<a href="/images/pripojeni-disku/pripojeni-disku-graficke-rozhrani.png">
+		<img src="/images/pripojeni-disku/pripojeni-disku-graficke-rozhrani.png" title="připojení disku" alt="připojení disku" class="img-responsive img-rounded center-block">
+	</a>
+	<br>
+</p>
+<h3>Textové rozhraní</h3>
+<p>
+	Pokud používáte pouze textové rozhraní postupujeme následovně.
+</p>
+<ol>
+	<li>Připojíme disk do USB.</li>
+	<li>
+		<p>
+			Vypíšeme si seznam připojených disků a&nbsp;najdeme řádek s&nbsp;naším diskem.
+			V&nbsp;tomto případě je to sda1.
+		</p>
+		<pre><code>$ sudo fdisk -l</code></pre>
+		<p>
+			<a href="/images/pripojeni-disku/pripojeni-disku.png">
+				<img src="/images/pripojeni-disku/pripojeni-disku.png" title="tail -f /var/log/messages" alt="tail -f /var/log/messages" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Vytvoříme složku do které budeme disk připojovat. Ta nám zůstane i&nbsp;do
+			budoucna a&nbsp;můžeme jí používat stále dokola.
+		</p>
+		<pre><code>$ sudo mkdir /media/disk</code></pre>
+	</li>
+	<li>
+		<p>
+			Připojíme disk do připravené složky.
+		</p>
+		<pre><code>$ sudo mount /dev/sda1 /media/disk/</code></pre>
+		<p>
+			V&nbsp;některých případech se může stát, že do příkazu bude potřeba zadat souborový systém disku.
+		</p>
+		<pre><code>$ sudo mount <b>-t vfat</b> /dev/sda1 /media/disk/</code></pre>
+		<p>
+			Varianty souborových systému jsou například.
+		</p>
+		<ul>
+			<li><code>ntfs-3g</code> - NTFS - Je nutné doinstalovat příkazem <code>$ sudo apt-get install ntfs-3g</code></li>
+			<li><code>vfat</code> - FAT32</li>
+			<li><code>ext4</code> - Ext4</li>
+		</ul>
+	</li>
+	<li>
+		<p>Pokud budeme chtít disk odpojit, tak použijeme.</p>
+		<pre><code>$ sudo umount /media/disk</code></pre>
+	</li>
+</ol>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>

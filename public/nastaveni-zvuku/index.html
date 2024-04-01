@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nastavení zvuku a ovládání hlasitosti na Raspberry Pi.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>Nastavení zvuku - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>Nastavení zvuku</h2>
+<p class="article-meta">
+	<strong>16.03.2014</strong>
+</p>
+<p>
+	Z nějakého důvodu nefunguje ovládání hlasitosti v&nbsp;grafickém režimu, takže je
+	potřeba nastavovat hlasitost pomocí příkazů.
+</p>
+<h3>amixer</h3>
+<ol>
+	<li>
+		<p>
+			Napřed si vypíšeme seznam toho co můžeme ovládat. Nejvíc nás bude
+			zajímat řádka ve které je uvedeno <b>PCM Playback Volume</b>.
+		</p>
+		<pre><code>$ amixer controls</code></pre>
+		<p>
+			<a href="/images/nastaveni-zvuku/amixer-controls.png">
+				<img src="/images/nastaveni-zvuku/amixer-controls.png" title="amixer controls" alt="amixer controls" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Vezmeme <b>numid</b> z&nbsp;předchozího kroku a&nbsp;vypíšeme si nastavení.
+			Ve výpisu vidíme maximální a&nbsp;minimální hodnoty hlasitosti a&nbsp;v předposlední
+			řádce začínající slovem <b>values</b> je aktuální hodnota.
+		</p>
+		<pre><code>$ amixer cget numid=1</code></pre>
+		<p>
+			<a href="/images/nastaveni-zvuku/amixer-cget.png">
+				<img src="/images/nastaveni-zvuku/amixer-cget.png" title="amixer controls" alt="amixer controls" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Hlasitost můžeme změnit dvěma způsoby. První varianta je zadat přímo číslo
+			z&nbsp;rozsahu hlasitosti.
+		</p>
+		<pre><code>$ amixer cset numid=1 -- -650</code></pre>
+		<p>
+			Druhou variantu je použít procenta.
+		</p>
+		<pre><code>$ amixer cset numid=1 90%</code></pre>
+	</li>
+</ol>
+<h3>alsamixer</h3>
+<p>
+	Další možností je ovládat hlasitost pomocí <b>alsamixer</b>. Zde se dá
+	nastavit hlasitost šipkami.
+</p>
+<pre><code>$ alsamixer</code></pre>
+<p>
+	<a href="/images/nastaveni-zvuku/alsamixer.png">
+		<img src="/images/nastaveni-zvuku/alsamixer.png" title="alsamixer" alt="alsamixer" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<h3>reset</h3>
+<p>
+	Resetovat nastavení zvuku lze příkazem.
+</p>
+<pre><code>$ sudo /etc/init.d/alsa-utils reset</code></pre>
+<br>
+<br>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>

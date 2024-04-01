@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Pavel Rampas">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nastavení SFTP pomocí programu FileZilla pro přenášení souborů mezi počítačem a Raspberry Pi.">
+	<link rel="icon" type="image/x-icon" href="/favicon.ico">
+	<title>SFTP - Raspberry Pi návody</title>
+	<link rel="stylesheet" href="/css/style.css?v=1">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<a href="/"><h1>Raspberry Pi návody</h1></a>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 article">
+				
+<h2>SFTP</h2>
+<p class="article-meta">
+	<strong>09.03.2014</strong>
+</p>
+<p>
+	Pokud potřebujeme přenášet soubory mezi Rapberry Pi a&nbsp;jinými počítači můžeme
+	k&nbsp;tomu využít SFTP. Já k&nbsp;tomu používám program FileZilla, ale použít se dá jakýkoliv
+	jiný program, který SFTP podporuje. Samozřejmě potřebujeme mít
+	Raspberry Pi připojené do sítě nebo přímo k&nbsp;jinému počítači.
+	Postupovat můžeme podle kapitoly <a href="/wi-fi/">Wi-Fi</a> nebo <a href="/ethernet/">Ethernet</a>.
+</p>
+<h3>Nastavení Raspberry Pi</h3>
+<ol>
+	<li>
+		<p>
+			Povolíme SSH v&nbsp;konfiguraci, pokud už jsme tak už někdy dřív neučinili.
+			SSH najdeme v&nbsp;<b>Advanced Options</b>.
+		</p>
+		<pre><code>$ sudo raspi-config</code></pre>
+	</li>
+	<li>
+		<p>
+			Pak už si jenom zjistíme ip adresu.
+		</p>
+		<pre><code>$ ifconfig</code></pre>
+	</li>
+</ol>
+<h3>Připojení pomocí FileZilly</h3>
+<ol>
+	<li>
+		<p>
+			Na počítači ze kterého budeme k&nbsp;Raspberry Pi přistupovat si stáhneme program
+			<a href="https://filezilla-project.org/">FileZilla</a> a&nbsp;nainstalujeme ho.
+			Spustíme program a&nbsp;v levém horním rohu vybereme <b>Otevřít správce míst</b>.
+		</p>
+		<p>
+			<a href="/images/sftp/filezilla.png">
+				<img src="/images/sftp/filezilla.png" title="filezilla" alt="filezilla" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Vybereme možnost <b>Nové místo</b> a&nbsp;do kolonky Hostitel zadáme IP adresu Raspberry Pi.
+			Protokol zvolíme SFTP a&nbsp;způsob přihlašování normální. Nakonec vyplníme naše
+			přihlašovací jméno a&nbsp;heslo, kterým se Raspberry Pi přihlašujeme a&nbsp;můžeme kliknout na Připojit.
+		</p>
+		<p>
+			<a href="/images/sftp/filezilla-login.png">
+				<img src="/images/sftp/filezilla-login.png" title="FileZilla přihlášení" alt="FileZilla přihlášení" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+</ol>
+
+			</div>
+			<div class="col-sm-4 hidden-print nav">
+				<h2>Menu</h2>
+				<h3 class="first">Hardware</h3>
+				<ul>
+					<li><a href="/raspberry-pi/">Raspberry Pi</a></li>
+					<li><a href="/prislusenstvi/">Příslušenství</a></li>
+					<li><a href="/chlazeni/">Chlazení</a></li>
+					<li><a href="/napajeni/">Napájení</a></li>
+					<li><a href="/krabicka/">Krabička</a></li>
+				</ul>
+				<h3>Operační systémy</h3>
+				<ul>
+					<li><a href="/priprava-sd-karty/">Příprava SD karty</a></li>
+					<li><a href="/obnoveni-sd-karty/">Obnovení SD karty</a></li>
+					<li><a href="/raspbian/">Raspbian</a></li>
+					<li><a href="/zakladni-prikazy/">Základní příkazy</a></li>
+					<li><a href="/pripojeni-disku/">Připojení disku</a></li>
+					<li><a href="/sprava-uzivatelu/">Správa uživatelů</a></li>
+					<li><a href="/noobs/">NOOBS</a></li>
+					<li><a href="/risc-os/">RISC OS</a></li>
+					<li><a href="/pidora/">Pidora</a></li>
+					<li><a href="/arch-linux/">Arch Linux</a></li>
+				</ul>
+				<h3>Projekty s&nbsp;Raspbianem</h3>
+				<ul>
+					<li><a href="/pimame-a-retropie/">PiMAME a&nbsp;RetroPie</a></li>
+					<li><a href="/coder/">Coder</a></li>
+				</ul>
+				<h3>Konfigurace sítě</h3>
+				<ul>
+					<li><a href="/wi-fi/">Wi-Fi</a></li>
+					<li><a href="/ethernet/">Ethernet</a></li>
+					<li><a href="/ssh/">SSH</a></li>
+					<li><a href="/sftp/">SFTP</a></li>
+					<li><a href="/webserver-a-wordpress/">Webserver a WordPress</a></li>
+				</ul>
+				<h3>Zvuk a video</h3>
+				<ul>
+					<li><a href="/nastaveni-zvuku/">Nastavení zvuku</a></li>
+					<li><a href="/nastaveni-obrazu/">Nastavení obrazu</a></li>
+					<li><a href="/omxplayer/">OMXPlayer</a></li>
+					<li><a href="/mplayer/">MPlayer</a></li>
+				</ul>
+				<h3>Výukové programy</h3>
+				<ul>
+					<li><a href="/scratch/">Scratch</a></li>
+					<li><a href="/wolfram-a-mathematica/">Wolfram a Mathematica</a></li>
+					<li><a href="/sonic-pi/">Sonic Pi</a></li>
+					<li><a href="/idle/">IDLE</a></li>
+					<li><a href="/smart-sim/">SmartSim</a></li>
+					<li><a href="/minecraft-pi-edition/">Minecraft Pi Edition</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer">
+			<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+		</div>
+	</div>
+</body>
+</html>
